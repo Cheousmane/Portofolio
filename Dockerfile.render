@@ -11,7 +11,7 @@ RUN apt-get update && apt-get install -y \
 
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-COPY composer.json composer.lock ./
+COPY composer.json composer.lock artisan ./
 COPY .env.example .env
 
 RUN php -r "file_put_contents('.env', preg_replace('/^APP_KEY=.*/m', 'APP_KEY='.'base64:'.base64_encode(random_bytes(32)), file_get_contents('.env')));"
