@@ -12,8 +12,7 @@ services:
         value: "false"
       - key: APP_URL
         fromEnv: RENDER_EXTERNAL_URL
-      - key: APP_KEY
-        generateValue: true
+
       - key: MAIL_MAILER
         value: smtp
       - key: MAIL_HOST
