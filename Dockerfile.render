@@ -3,8 +3,10 @@ FROM php:8.2-cli AS build
 WORKDIR /app
 
 RUN apt-get update && apt-get install -y \
-    git unzip libpq-dev libpng-dev libonig-dev libxml2-dev nodejs npm ca-certificates \
+    git unzip libpq-dev libpng-dev libonig-dev libxml2-dev ca-certificates curl \
     && docker-php-ext-install pdo pdo_pgsql pgsql mbstring gd xml \
+    && curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
+    && apt-get install -y nodejs \
     && rm -rf /var/lib/apt/lists/*
 
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
@@ -12,8 +14,8 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 COPY composer.json composer.lock ./
 COPY .env.example .env
 
-RUN echo "APP_KEY=$(php -r 'echo "base64:".base64_encode(random_bytes(32));')" >> .env
-RUN COMPOSER_ALLOW_SUPERUSER=1 APP_URL=http://localhost:8000 composer install --no-dev --optimize-autoloader --no-interaction
+RUN php -r "file_put_contents('.env', preg_replace('/^APP_KEY=.*/m', 'APP_KEY='.'base64:'.base64_encode(random_bytes(32)), file_get_contents('.env')));"
+RUN APP_URL=http://localhost:8000 composer install --no-dev --optimize-autoloader --no-interaction
 
 COPY package.json package-lock.json ./
 RUN npm install
@@ -22,8 +24,6 @@ COPY . .
 RUN npm run build
 
 FROM php:8.2-cli
-
-WORKDIR /app
 
 RUN apt-get update && apt-get install -y libpq-dev libpng-dev libonig-dev libxml2-dev ca-certificates \
     && docker-php-ext-install pdo pdo_pgsql pgsql mbstring gd xml \
