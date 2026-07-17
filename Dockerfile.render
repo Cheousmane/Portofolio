@@ -15,13 +15,14 @@ COPY composer.json composer.lock artisan ./
 COPY .env.example .env
 
 RUN php -r "file_put_contents('.env', preg_replace('/^APP_KEY=.*/m', 'APP_KEY='.'base64:'.base64_encode(random_bytes(32)), file_get_contents('.env')));"
-RUN APP_URL=http://localhost:8000 composer install --no-dev --optimize-autoloader --no-interaction
+RUN COMPOSER_MEMORY_LIMIT=-1 APP_URL=http://localhost:8000 composer install --no-dev --optimize-autoloader --no-interaction --no-scripts
+RUN composer dump-autoload --no-dev --optimize
 
 COPY package.json package-lock.json ./
 RUN npm install
 
 COPY . .
-RUN npm run build
+RUN php artisan package:discover --ansi --no-interaction && npm run build
 
 FROM php:8.2-cli
 
