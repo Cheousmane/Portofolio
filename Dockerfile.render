@@ -19,6 +19,8 @@ RUN php -r "file_put_contents('.env', preg_replace('/^APP_KEY=.*/m', 'APP_KEY='.
 
 FROM php:8.2-cli
 
+WORKDIR /app
+
 RUN apt-get update && apt-get install -y libpq-dev libpng-dev libonig-dev libxml2-dev ca-certificates \
     && docker-php-ext-install pdo pdo_pgsql pgsql mbstring gd xml \
     && rm -rf /var/lib/apt/lists/*
