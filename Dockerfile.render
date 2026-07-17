@@ -31,6 +31,9 @@ EXPOSE 8080
 
 CMD chmod -R 777 storage bootstrap/cache && \
     unset APP_KEY && \
+    php artisan route:clear --ansi && \
+    php artisan view:clear --ansi && \
+    php artisan config:clear --ansi && \
     php artisan session:table --ansi && \
     php artisan migrate --force && \
     php artisan serve --host=0.0.0.0 --port=$PORT
