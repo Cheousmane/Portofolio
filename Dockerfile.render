@@ -30,5 +30,6 @@ COPY --from=build /app /app
 EXPOSE 8080
 
 CMD chmod -R 777 storage bootstrap/cache && \
+    unset APP_KEY && \
     php artisan migrate --force && \
     php artisan serve --host=0.0.0.0 --port=$PORT
