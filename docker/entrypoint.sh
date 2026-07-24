@@ -1,21 +1,31 @@
 #!/bin/sh
 set -e
 
-# Génère APP_KEY si absent (sécurité, normalement déjà défini sur Railway)
-if [ -z "$APP_KEY" ]; then
-    php artisan key:generate --force
+# S'assurer qu'un fichier .env existe
+if [ ! -f .env ]; then
+    touch .env
 fi
 
-# Cache config/routes/vues pour la prod (ignoré si déjà en cache)
+# Si APP_KEY est absent des variables d'environnement système
+if [ -z "$APP_KEY" ]; then
+    KEY_IN_ENV=$(grep '^APP_KEY=' .env | cut -d '=' -f2 2>/dev/null || true)
+    if [ -z "$KEY_IN_ENV" ]; then
+        php artisan key:generate --force
+    fi
+    export APP_KEY=$(grep '^APP_KEY=' .env | cut -d '=' -f2)
+fi
+
+# Recharger proprement la configuration
+php artisan config:clear
 php artisan config:cache
 php artisan route:cache
 php artisan view:cache
 
-# Migrations
+# Exécuter les migrations
 php artisan migrate --force
 
-# Lien storage (idempotent)
+# Lien de stockage
 php artisan storage:link || true
 
-# Démarre PHP-FPM + Nginx via supervisord
+# Lancer supervisord
 exec supervisord -c /etc/supervisor/conf.d/supervisord.conf
