@@ -14,13 +14,24 @@ class ContactController extends Controller
     {
         $data = $request->validated();
 
+        Log::info('Contact form submission', [
+            'mailer' => config('mail.default'),
+            'host' => config('mail.mailers.smtp.host'),
+            'port' => config('mail.mailers.smtp.port'),
+            'username' => config('mail.mailers.smtp.username'),
+            'has_password' => !empty(config('mail.mailers.smtp.password')),
+            'to' => config('mail.contact_to'),
+        ]);
+
         try {
             Mail::to(config('mail.contact_to', 'sidibeousmanemohamed@gmail.com'))
                 ->send(new ContactMessage($data));
+
+            Log::info('Contact mail sent successfully');
         } catch (\Throwable $e) {
             Log::error('Contact mail failed', [
                 'error' => $e->getMessage(),
-                'data' => $data,
+                'trace' => $e->getTraceAsString(),
             ]);
         }
 
