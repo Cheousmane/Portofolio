@@ -28,9 +28,10 @@ fi
 if [ "$IS_VALID_KEY" -eq 0 ]; then
     echo "=== APP_KEY absente ou non valide (doit commencer par base64:). Génération d'une nouvelle clé Laravel... ==="
     php artisan key:generate --force
-    GENERATED_KEY=$(grep '^APP_KEY=' .env | cut -d '=' -f2)
+    # Extraire la clé complète depuis .env sans couper les caractères '=' de la fin
+    GENERATED_KEY=$(sed -n 's/^APP_KEY=//p' .env)
     export APP_KEY="$GENERATED_KEY"
-    echo "=== Clé Laravel générée avec succès ==="
+    echo "=== Clé Laravel générée : $APP_KEY ==="
 fi
 
 # Nettoyage et mise en cache de la configuration

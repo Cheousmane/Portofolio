@@ -10,8 +10,6 @@ services:
         value: production
       - key: APP_DEBUG
         value: "true"
-      - key: APP_KEY
-        sync: false
       - key: APP_URL
         sync: false
 
