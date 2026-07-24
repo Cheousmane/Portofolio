@@ -4,14 +4,14 @@ services:
     runtime: docker
     region: frankfurt
     plan: free
-    dockerfilePath: Dockerfile.render
+    dockerfilePath: Dockerfile
     envVars:
       - key: APP_ENV
         value: production
       - key: APP_DEBUG
         value: "true"
       - key: APP_URL
-        fromEnv: RENDER_EXTERNAL_URL
+        sync: false
 
       - key: MAIL_MAILER
         value: smtp
