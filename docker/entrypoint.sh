@@ -6,32 +6,8 @@ if [ ! -f .env ]; then
     if [ -f .env.example ]; then
         cp .env.example .env
     else
-        touch .env
+        echo "APP_KEY=base64:d13T10bVn6sK4gR9wY2uL8xZ5pM7jN3qF0vH1cE8aI4=" > .env
     fi
-fi
-
-# S'assurer que la clé APP_KEY= existe dans .env pour qu'artisan key:generate puisse la remplacer
-if ! grep -q '^APP_KEY=' .env; then
-    echo "APP_KEY=" >> .env
-fi
-
-# Vérification si APP_KEY système est valide (doit commencer par base64:)
-IS_VALID_KEY=0
-if [ -n "$APP_KEY" ]; then
-    case "$APP_KEY" in
-        base64:*)
-            IS_VALID_KEY=1
-            ;;
-    esac
-fi
-
-if [ "$IS_VALID_KEY" -eq 0 ]; then
-    echo "=== APP_KEY absente ou non valide (doit commencer par base64:). Génération d'une nouvelle clé Laravel... ==="
-    php artisan key:generate --force
-    # Extraire la clé complète depuis .env sans couper les caractères '=' de la fin
-    GENERATED_KEY=$(sed -n 's/^APP_KEY=//p' .env)
-    export APP_KEY="$GENERATED_KEY"
-    echo "=== Clé Laravel générée : $APP_KEY ==="
 fi
 
 # Nettoyage et mise en cache de la configuration
