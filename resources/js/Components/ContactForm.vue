@@ -97,7 +97,12 @@ textarea{resize:vertical; min-height:120px;}
 @media (max-width:900px){ .contact-grid{grid-template-columns:1fr; gap:32px;} }
 @media (max-width:480px){
     .title{font-size:24px;}
+    .contact-info a, .contact-info .location{font-size:14px; gap:8px; word-break:break-all;}
     input, textarea{padding:11px 12px; font-size:14px;}
     .submit-btn{width:100%; justify-content:center;}
+}
+@media (max-width:400px){
+    .contact-grid{gap:20px;}
+    .avail{padding:12px 14px; font-size:13px;}
 }
 </style>

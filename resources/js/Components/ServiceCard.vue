@@ -45,5 +45,6 @@ li::before{content:''; width:6px; height:6px; border-radius:50%; background:var(
 }
 .service-card.dark .stack span{background:rgba(255,255,255,0.08); color:rgba(255,255,255,0.85);}
 @media (max-width:600px){ .service-card{padding:28px 24px;} }
-@media (max-width:480px){ .service-card{padding:24px 20px;} h3{font-size:20px;} }
+@media (max-width:480px){ .service-card{padding:24px 20px;} h3{font-size:20px;} ul{font-size:14px;} }
+@media (max-width:400px){ .service-card{padding:20px 16px;} h3{font-size:18px;} }
 </style>

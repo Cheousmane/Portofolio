@@ -149,4 +149,12 @@ header.compact nav{padding:10px 28px;}
     header.compact nav{padding:8px 20px;}
     .brand{font-size:17px;}
 }
+@media (max-width:400px){
+    nav{padding:10px 12px;}
+    header.compact nav{padding:6px 12px;}
+    .brand{font-size:15px; gap:6px;}
+    .brand small{font-size:9px;}
+    .mobile-menu{width:100%;}
+    .header-right{gap:10px;}
+}
 </style>

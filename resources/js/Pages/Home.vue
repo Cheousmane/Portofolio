@@ -132,7 +132,8 @@ onMounted(() => {
 .skill-group{display:flex; flex-wrap:wrap; align-items:center; gap:8px;}
 .skill-group strong{font-size:12px; text-transform:uppercase; letter-spacing:0.06em; color:var(--teal); min-width:90px;}
 @media (max-width:900px){ .about-grid{grid-template-columns:1fr; gap:32px;} }
-@media (max-width:480px){ .about-grid{gap:24px;} }
+@media (max-width:480px){ .about-grid{gap:24px;} .skill-group strong{min-width:70px;font-size:11px;} }
+@media (max-width:400px){ .about-grid{gap:16px;} .skill-group{gap:4px;} .skill-group strong{min-width:100%;margin-bottom:2px;} }
 
 .intro{color:var(--gray); max-width:60ch; margin-bottom:36px;}
 .services-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:24px;}
@@ -208,5 +209,10 @@ onMounted(() => {
 @media (max-width:480px){
     .project-stat-box{padding:36px 20px 32px;}
     .project-stat-box h3{font-size:24px;}
+}
+@media (max-width:400px){
+    .project-card{padding:20px 16px;}
+    .project-card h3{font-size:16px;}
+    .project-card p{font-size:13px;}
 }
 </style>

@@ -92,5 +92,11 @@ footer{
 }
 @media (max-width:480px){
     .foot-grid{grid-template-columns:1fr;}
+    .foot-col a, .foot-col span{word-break:break-all;}
+}
+@media (max-width:400px){
+    footer{padding-top:40px;}
+    .foot-grid{gap:24px;}
+    .foot-bottom{margin-top:24px; padding:14px 0;}
 }
 </style>

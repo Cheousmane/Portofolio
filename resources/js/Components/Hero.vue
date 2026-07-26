@@ -248,4 +248,10 @@ onMounted(() => {
     #hero h1{font-size:clamp(22px,7vw,28px);}
     .stats{gap:16px; flex-direction:column;}
 }
+@media (max-width:400px){
+    #hero{padding-top:64px; padding-bottom:44px;}
+    .hero-art{max-width:110px;}
+    #hero h1{font-size:clamp(20px,6.5vw,24px);}
+    .hero-ctas{gap:8px;}
+}
 </style>

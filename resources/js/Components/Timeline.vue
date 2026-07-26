@@ -42,4 +42,8 @@ defineProps({
     .tl-item::before{left:-14px; width:10px; height:10px;}
     .tl-item h3{font-size:16px;}
 }
+@media (max-width:400px){
+    .tl-item{padding:12px 14px;}
+    .tl-item p{font-size:13.5px;}
+}
 </style>
