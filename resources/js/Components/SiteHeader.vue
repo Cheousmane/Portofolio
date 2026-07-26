@@ -125,8 +125,10 @@ header.compact nav{padding:10px 28px;}
 
 .mobile-menu{
     display:none; position:fixed; top:0; right:-100%; width:280px; height:100vh;
-    background:var(--card); flex-direction:column; gap:8px;
-    padding:88px 28px 32px; box-shadow:-8px 0 32px var(--glass-shadow);
+    background:var(--glass-bg); backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px);
+    flex-direction:column; gap:8px;
+    padding:88px 28px 32px; border-left:1px solid var(--glass-border);
+    box-shadow:-8px 0 32px var(--glass-shadow);
     transition:right .35s ease; z-index:24;
 }
 .mobile-menu.open{right:0;}
