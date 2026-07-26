@@ -25,13 +25,13 @@ onMounted(() => {
 <template>
     <component :is="tag" :id="'reveal-' + text.replace(/\s/g, '-').toLowerCase()" class="reveal-text">
         <span v-for="(c, i) in chars" :key="i" class="char" :class="{ shown: revealed }" :style="{ transitionDelay: c.delay + 'ms' }">
-            {{ c.char === ' ' ? '\u00A0' : c.char }}
+            {{ c.char }}
         </span>
     </component>
 </template>
 
 <style scoped>
-.reveal-text{display:inline;}
+.reveal-text{display:block;}
 .char{display:inline; opacity:0; transform:translateY(20px); transition:opacity .4s ease, transform .4s ease;}
 .char.shown{opacity:1; transform:translateY(0);}
 </style>
