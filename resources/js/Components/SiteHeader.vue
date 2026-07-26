@@ -140,6 +140,7 @@ header.compact nav{padding:10px 28px;}
 .mobile-cta{color:var(--teal) !important; font-weight:700;}
 
 @media (max-width:720px){
+    header{position:fixed; background:var(--glass-bg);}
     .navlinks{display:none;}
     .avail-badge{display:none;}
     .hamburger{display:flex;}
