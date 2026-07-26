@@ -67,33 +67,6 @@ class HomeController extends Controller
                 ],
             ],
 
-            'experience' => [
-                [
-                    'date' => '2026 — en cours',
-                    'title' => 'Certification CCNA',
-                    'description' => 'Cisco — formalisation d\'un socle réseau construit sur le terrain depuis 3 ans.',
-                    'now' => true,
-                ],
-                [
-                    'date' => 'Mars 2021 — Présent',
-                    'title' => 'IT Assistant — Call Me Mali',
-                    'description' => 'Support de première ligne pour 50+ utilisateurs/jour dans un centre d\'appel de 400+ employés. Réseau, postes, téléphonie, Google Workspace, reporting.',
-                    'now' => false,
-                ],
-                [
-                    'date' => '2017 — 2021',
-                    'title' => "Licence, Systèmes d'Information de Gestion",
-                    'description' => 'Institut Universitaire de Gestion (IUG), Bamako.',
-                    'now' => false,
-                ],
-                [
-                    'date' => '2014 — 2017',
-                    'title' => 'Baccalauréat, Économie',
-                    'description' => 'Lycée Privé El Hadj Karim TRAORE LEKT, Bamako.',
-                    'now' => false,
-                ],
-            ],
-
             'why' => [
                 ['icon' => '🌍', 'title' => 'Communication sans friction', 'text' => 'Trilingue français / anglais / bambara — pour des clients locaux comme internationaux, sans intermédiaire.'],
                 ['icon' => '⚡', 'title' => 'Habitué à la haute pression', 'text' => 'Formé dans un centre d\'appel de 400+ postes : je priorise vite et je ne laisse pas un incident traîner.'],

@@ -230,6 +230,22 @@ onMounted(() => {
 
 @media (max-width:900px){
     .hero-grid{grid-template-columns:1fr;}
-    .hero-art{order:-1; max-width:220px; margin:0 auto 12px;}
+    .hero-art{order:-1; max-width:180px; margin:0 auto 12px;}
+    #hero h1{font-size:clamp(28px,7vw,36px);}
+    .lead{font-size:16px;}
+}
+@media (max-width:600px){
+    #hero{padding-top:80px; padding-bottom:60px;}
+    #hero h1{font-size:clamp(24px,7.5vw,32px);}
+    .lead{font-size:15px; margin-bottom:24px;}
+    .hero-ctas{flex-direction:column; gap:10px;}
+    .hero-ctas .btn{width:100%; justify-content:center;}
+    .stats{gap:24px;}
+    .stat b{font-size:22px;}
+}
+@media (max-width:480px){
+    .hero-art{max-width:140px;}
+    #hero h1{font-size:clamp(22px,7vw,28px);}
+    .stats{gap:16px; flex-direction:column;}
 }
 </style>

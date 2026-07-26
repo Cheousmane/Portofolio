@@ -30,5 +30,7 @@ defineProps({
 }
 .why-card h3{font-size:16px; margin-bottom:8px;}
 .why-card p{color:var(--gray); font-size:14px;}
-@media (max-width:800px){ .why-grid{grid-template-columns:1fr;} }
+@media (max-width:1024px){ .why-grid{grid-template-columns:repeat(2,1fr);} }
+@media (max-width:600px){ .why-grid{grid-template-columns:1fr;} }
+@media (max-width:480px){ .why-card{padding:22px 18px;} }
 </style>

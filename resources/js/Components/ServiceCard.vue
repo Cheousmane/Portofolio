@@ -44,4 +44,6 @@ li::before{content:''; width:6px; height:6px; border-radius:50%; background:var(
     background:var(--stack-bg); color:var(--stack-text);
 }
 .service-card.dark .stack span{background:rgba(255,255,255,0.08); color:rgba(255,255,255,0.85);}
+@media (max-width:600px){ .service-card{padding:28px 24px;} }
+@media (max-width:480px){ .service-card{padding:24px 20px;} h3{font-size:20px;} }
 </style>

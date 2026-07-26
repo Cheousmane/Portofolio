@@ -4,7 +4,6 @@ import ConnectorSpine from '@/Components/ConnectorSpine.vue';
 import SiteHeader from '@/Components/SiteHeader.vue';
 import Hero from '@/Components/Hero.vue';
 import ServiceCard from '@/Components/ServiceCard.vue';
-import Timeline from '@/Components/Timeline.vue';
 import WhyGrid from '@/Components/WhyGrid.vue';
 import ContactForm from '@/Components/ContactForm.vue';
 import SiteFooter from '@/Components/SiteFooter.vue';
@@ -16,7 +15,6 @@ defineProps({
     typingStrings: { type: Array, required: true },
     languages: { type: Array, required: true },
     services: { type: Array, required: true },
-    experience: { type: Array, required: true },
     why: { type: Array, required: true },
     contact: { type: Object, required: true },
     skills: { type: Array, required: true },
@@ -82,14 +80,6 @@ onMounted(() => {
             </div>
         </section>
 
-        <section id="experience">
-            <div class="wrap">
-                <div class="eyebrow reveal">Parcours</div>
-                <RevealText text="Expérience & formation" tag="h2" class="h2" />
-                <Timeline :items="experience" />
-            </div>
-        </section>
-
         <section id="projets">
             <div class="wrap">
                 <div class="eyebrow reveal">Réalisations</div>
@@ -134,13 +124,15 @@ onMounted(() => {
 
 <style scoped>
 .h2{font-size:30px;}
+@media (max-width:480px){ .h2{font-size:24px;} }
 .about-grid{display:grid; grid-template-columns:0.9fr 1.1fr; gap:56px; align-items:start;}
 .about-grid p{color:var(--gray); margin-bottom:16px; max-width:60ch;}
 .langs{display:flex; gap:10px; flex-wrap:wrap; margin-top:18px;}
 .skills-compact{display:flex; flex-wrap:wrap; gap:20px; margin-top:24px; padding-top:24px; border-top:1px solid var(--line);}
 .skill-group{display:flex; flex-wrap:wrap; align-items:center; gap:8px;}
 .skill-group strong{font-size:12px; text-transform:uppercase; letter-spacing:0.06em; color:var(--teal); min-width:90px;}
-@media (max-width:900px){ .about-grid{grid-template-columns:1fr;} }
+@media (max-width:900px){ .about-grid{grid-template-columns:1fr; gap:32px;} }
+@media (max-width:480px){ .about-grid{gap:24px;} }
 
 .intro{color:var(--gray); max-width:60ch; margin-bottom:36px;}
 .services-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:24px;}
@@ -212,5 +204,9 @@ onMounted(() => {
     font-size:14px; color:rgba(255,255,255,0.75); font-weight:500;
     position:relative; z-index:1;
 }
-@media (max-width:700px){ .project-stats{flex-direction:column;} }
+@media (max-width:700px){ .project-stats{flex-direction:column; gap:16px;} }
+@media (max-width:480px){
+    .project-stat-box{padding:36px 20px 32px;}
+    .project-stat-box h3{font-size:24px;}
+}
 </style>

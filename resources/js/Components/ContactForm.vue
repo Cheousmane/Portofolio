@@ -94,5 +94,10 @@ textarea{resize:vertical; min-height:120px;}
 .error{color:#C0392B; font-size:12.5px; margin-top:4px;}
 .submit-btn{align-self:flex-start; margin-top:6px;}
 .submit-btn:disabled{opacity:0.6; cursor:default;}
-@media (max-width:900px){ .contact-grid{grid-template-columns:1fr;} }
+@media (max-width:900px){ .contact-grid{grid-template-columns:1fr; gap:32px;} }
+@media (max-width:480px){
+    .title{font-size:24px;}
+    input, textarea{padding:11px 12px; font-size:14px;}
+    .submit-btn{width:100%; justify-content:center;}
+}
 </style>

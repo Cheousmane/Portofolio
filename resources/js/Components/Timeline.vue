@@ -36,4 +36,10 @@ defineProps({
 .tl-date{font-size:12.5px; color:var(--teal); font-weight:500; margin-bottom:6px; display:block;}
 .tl-item h3{font-size:18px; margin-bottom:4px;}
 .tl-item p{color:var(--gray); font-size:14.5px;}
+@media (max-width:600px){
+    .timeline{padding-left:16px; margin-top:28px;}
+    .tl-item{padding:16px 18px;}
+    .tl-item::before{left:-14px; width:10px; height:10px;}
+    .tl-item h3{font-size:16px;}
+}
 </style>

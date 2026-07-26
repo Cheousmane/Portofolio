@@ -48,4 +48,5 @@ onUnmounted(() => {
 }
 .visible .cursor-dot{opacity:1;}
 .visible .cursor-ring{opacity:1;}
+@media (hover:none) and (pointer:coarse){ .custom-cursor{display:none;} }
 </style>

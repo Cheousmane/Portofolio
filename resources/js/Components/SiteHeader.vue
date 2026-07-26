@@ -5,6 +5,7 @@ import DarkModeToggle from './DarkModeToggle.vue';
 
 const activeSection = ref('hero')
 const scrolled = ref(false)
+const mobileOpen = ref(false)
 
 function onScroll() {
     scrolled.value = window.scrollY > 60
@@ -21,8 +22,16 @@ function onScroll() {
     }
 }
 
-onMounted(() => window.addEventListener('scroll', onScroll, { passive: true }))
-onUnmounted(() => window.removeEventListener('scroll', onScroll))
+function closeMobile() { mobileOpen.value = false }
+
+onMounted(() => {
+    window.addEventListener('scroll', onScroll, { passive: true })
+    document.addEventListener('click', closeMobile)
+})
+onUnmounted(() => {
+    window.removeEventListener('scroll', onScroll)
+    document.removeEventListener('click', closeMobile)
+})
 </script>
 
 <template>
@@ -41,9 +50,20 @@ onUnmounted(() => window.removeEventListener('scroll', onScroll))
             <div class="header-right">
                 <DarkModeToggle />
                 <span class="avail-badge"><span class="pulse-dot"></span> Disponible</span>
-                <a href="#contact" class="btn">Demander un devis</a>
+                <a href="#contact" class="btn header-btn">Demander un devis</a>
+                <button class="hamburger" :class="{ active: mobileOpen }" @click.stop="mobileOpen = !mobileOpen" aria-label="Menu">
+                    <span></span><span></span><span></span>
+                </button>
             </div>
         </nav>
+        <div class="mobile-menu" :class="{ open: mobileOpen }" @click.stop>
+            <a href="#services" @click="closeMobile" :class="{ active: activeSection === 'services' }">Services</a>
+            <a href="#apropos" @click="closeMobile" :class="{ active: activeSection === 'apropos' }">À propos</a>
+            <a href="#experience" @click="closeMobile" :class="{ active: activeSection === 'experience' }">Expérience</a>
+            <a href="#projets" @click="closeMobile" :class="{ active: activeSection === 'projets' }">Réalisations</a>
+            <a href="#pourquoi" @click="closeMobile" :class="{ active: activeSection === 'pourquoi' }">Pourquoi moi</a>
+            <a href="#contact" @click="closeMobile" :class="{ active: activeSection === 'contact' }" class="mobile-cta">Contact</a>
+        </div>
     </header>
 </template>
 
@@ -91,8 +111,42 @@ header.compact nav{padding:10px 28px;}
     50%{opacity:0.6; transform:scale(1.3);}
 }
 
+.hamburger{
+    display:none; flex-direction:column; gap:4px; cursor:pointer;
+    background:none; border:none; padding:4px; z-index:25;
+}
+.hamburger span{
+    display:block; width:22px; height:2px; background:var(--navy);
+    border-radius:2px; transition:all .3s ease;
+}
+.hamburger.active span:nth-child(1){transform:rotate(45deg) translate(4px,4px);}
+.hamburger.active span:nth-child(2){opacity:0;}
+.hamburger.active span:nth-child(3){transform:rotate(-45deg) translate(4px,-4px);}
+
+.mobile-menu{
+    display:none; position:fixed; top:0; right:-100%; width:280px; height:100vh;
+    background:var(--card); flex-direction:column; gap:8px;
+    padding:88px 28px 32px; box-shadow:-8px 0 32px var(--glass-shadow);
+    transition:right .35s ease; z-index:24;
+}
+.mobile-menu.open{right:0;}
+.mobile-menu a{
+    font-size:16px; font-weight:500; color:var(--navy-2); padding:12px 0;
+    border-bottom:1px solid var(--line); transition:color .2s;
+}
+.mobile-menu a:hover, .mobile-menu a.active{color:var(--teal);}
+.mobile-cta{color:var(--teal) !important; font-weight:700;}
+
 @media (max-width:720px){
     .navlinks{display:none;}
     .avail-badge{display:none;}
+    .hamburger{display:flex;}
+    .mobile-menu{display:flex;}
+}
+@media (max-width:480px){
+    .header-btn{display:none;}
+    nav{padding:12px 20px;}
+    header.compact nav{padding:8px 20px;}
+    .brand{font-size:17px;}
 }
 </style>
