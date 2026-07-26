@@ -69,8 +69,8 @@ onUnmounted(() => {
 
 <style scoped>
 header{
-    position:sticky; top:0; z-index:20;
-    background:transparent;
+    position:fixed; top:0; left:0; right:0; z-index:20;
+    background:var(--glass-bg);
     backdrop-filter:blur(14px);
     -webkit-backdrop-filter:blur(14px);
     border-bottom:1px solid rgba(20,184,166,0.08);
@@ -140,7 +140,6 @@ header.compact nav{padding:10px 28px;}
 .mobile-cta{color:var(--teal) !important; font-weight:700;}
 
 @media (max-width:720px){
-    header{position:fixed; background:var(--glass-bg);}
     .navlinks{display:none;}
     .avail-badge{display:none;}
     .hamburger{display:flex;}

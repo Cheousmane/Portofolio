@@ -123,7 +123,7 @@ onMounted(() => {
 </template>
 
 <style scoped>
-@media (max-width:720px){ main{padding-top:58px;} }
+main{padding-top:72px;}
 .h2{font-size:30px;}
 @media (max-width:480px){ .h2{font-size:24px;} }
 .about-grid{display:grid; grid-template-columns:0.9fr 1.1fr; gap:56px; align-items:start;min-width:0;}
